@@ -26,7 +26,7 @@ for (i in 1:length(replyfilesList)) {
 }
 
 #　重複行の削除
-replytweetDF %<>% distinct(screen_name, status_id)
+replytweetDF %<>% distinct(screen_name, status_id, .keep_all=TRUE)
 
 print("readRDS Ended.")
 
