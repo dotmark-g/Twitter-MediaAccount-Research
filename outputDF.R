@@ -25,6 +25,9 @@ for (i in 1:length(replyfilesList)) {
   replytweetDF <- rbind.data.frame(replytweetDF, tempreplyDF)
 }
 
+#　重複行の削除
+replytweetDF %<>% distinct(screen_name, status_id)
+
 print("readRDS Ended.")
 
 #created_timeが標準時のため、日本時間から9時間ズレている
