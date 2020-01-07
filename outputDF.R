@@ -1,7 +1,6 @@
 library(tidyverse)
 library(stringr)
 library(magrittr)
-library(purrr)
 
 setwd("C:/Users/Tomoya/Documents/R/mongodbTest")
 
