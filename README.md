@@ -26,5 +26,5 @@ MorphAnalysis-ReplyText.Rで作成した、形態素解析の出力されたフ�
 ### MediaNamesList.xlsx
 メディアの各種属性を記載したxlsxファイル
 
-### 分析
+### Grad Thesis Code.R
 卒論本文中のソースコードを収めたもの。
