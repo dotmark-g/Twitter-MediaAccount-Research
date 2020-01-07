@@ -29,7 +29,7 @@ replytweetDF %<>% distinct(screen_name, status_id, .keep_all=TRUE)
 
 print("readRDS Ended.")
 
-#created_timeが標準時のため、日本時間から9時間ズレている
+#created_timeが標準時のため、日本時間から9時間ズレているため修正
 mediatweetDF %<>% mutate(created_at = created_at + 60*60*9)
 replytweetDF %<>% mutate(created_at = created_at + 60*60*9)
 
@@ -77,41 +77,3 @@ saveRDS(mediatweetCleanedDF, file = paste0("./outputDF/MediaTweetDF.rds"))
 saveRDS(replytweetCleanedDF, file = paste0("./outputDF/ReplyTweetDF.rds"))
 
 print("saveRDS Ended.")
-
-#集計DF作成(summaryDF)
-
-mediatweetCleanedDF %>% 
-  group_by(screen_name,date) %>%
-  summarise(TweetAmount = n(),
-            RT = sum(retweet_count),
-            Fav = sum(favorite_count),
-            Reply = sum(replyAmount),
-            Followers = max(followers_count)
-  ) -> MediaSummaryDF_byDate
-
-saveRDS(MediaSummaryDF_byDate,
-        file = paste0("./outputDF/MediaSummaryDF_byDate.rds"))
-
-print("SummaryDF_bydate saved.")
-
-#集計DF作成(summaryDF_TERM)
-
-MediaSummaryDF_byDate %>% group_by(screen_name) %>%
-  summarise(TweetAmount = sum(TweetAmount),
-            RT = sum(RT),
-            Fav = sum(Fav),
-            Reply = sum(RT),
-            Followers = max(Followers)) %>%
-  mutate(Ave.RT = RT / TweetAmount,
-         Ave.Fav = Fav / TweetAmount,
-         Ave.Reply = Reply / TweetAmount,
-         St.RT = RT / Followers,
-         St.Fav = Fav / Followers,
-         St.Reply = Reply / Followers,) %>% 
-  mutate(Both.RT = Ave.RT / Followers,
-         Both.Fav = Ave.Fav / Followers,
-         Both.Reply = Ave.Reply / Followers)-> MediaSummaryDF_TERM
-
-saveRDS(MediaSummaryDF_TERM, file = paste0("./outputDF/MediaSummaryDF_TERM.rds"))
-print("MediaSummaryDF_TERM saved.")
-print("Job Succeeded.")
