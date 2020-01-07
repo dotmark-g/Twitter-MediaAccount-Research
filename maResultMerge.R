@@ -3,7 +3,8 @@ library(stringr)
 library(magrittr)
 library(purrr)
 
-pn <- read.table("http://www.lr.pi.titech.ac.jp/~takamura/pubs/pn_ja.dic")
+pn <- read.table("http://www.lr.pi.titech.ac.jp/~takamura/pubs/pn_ja.dic", 
+           sep = ":", stringsAsFactors = FALSE)
 pn2 <- pn %>% select(V1, V4) %>% rename(TERM = V1)
 pn2 %<>% distinct(TERM, .keep_all = TRUE)
 
