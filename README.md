@@ -14,6 +14,9 @@ get tweet and reply.Rで取得した期間内のrdsファイルを読み込み�
 ・メディアに対するリプライ
 のデータフレームを作成し、rdsファイルに保存する。
 
-### 
+### MorphAnalysis-ReplyText.R
+outputDF.Rで作成した、メディアに対するリプライのrdsファイルを読み込み、
+リプライのテキストに対して形態素解析を行い、結果をデータフレーム形式にしてrdsファイルに保存する。
 
-### 
+### MediaNamesList1222.xlsx
+メディアの各種属性を記載したxlsxファイル
