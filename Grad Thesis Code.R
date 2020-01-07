@@ -24,7 +24,7 @@ summary(lmDF)
 #以下リプライの感情分析
 
 #形態素解析・感情値代入済みのデータを読み込む
-maResultDF <- readRDS("./maResultDF.rds")
+maResultDF <- readRDS("./outputDF/maResultDF.rds")
 maResultDF %<>% left_join(MediaNamesList, by = c("target" = "screen_name"))
 
 
